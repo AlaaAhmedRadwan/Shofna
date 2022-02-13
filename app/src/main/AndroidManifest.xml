@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.shofna">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="10001" />
+
+
+
+        <activity
+            android:name=".presentation.SplashActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".presentation.MainActivity"
+            android:exported="true">
+
+        </activity>
+
+        <activity
+            android:name=".presentation.newsdetailsactivity.News_Details_Activity"
+            android:theme="@style/AppTheme">
+
+        </activity>
+        <!-- MainActivity is the parent for ResultActivity -->
+
+
+        <activity
+            android:name=".presentation.notifications.NotificationResultActivity"
+            android:parentActivityName=".presentation.SplashActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize">
+            <intent-filter>
+                <action android:name="OPEN_ACTIVITY_1" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".presentation.webview.WebViewActivity"
+            android:theme="@style/AppTheme">
+
+        </activity>
+        <activity
+            android:name=".presentation.registerActivity.loginfragment.ForgotPasswordActivity"
+            android:theme="@style/AppTheme">
+
+        </activity>
+
+
+        <activity
+            android:name=".presentation.registerActivity.RegisterActivity"
+            android:theme="@style/AppTheme">
+
+        </activity>
+
+        <!-- MainActivity is the parent for ResultActivity -->
+
+
+        <service
+            android:name=".helper.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="true" />
+
+
+    </application>
+
+</manifest>
