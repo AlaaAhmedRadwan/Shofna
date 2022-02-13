@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.shofna.R
 import com.example.shofna.presentation.MainActivity
 import com.example.shofna.presentation.registerActivity.RegisterActivity
@@ -22,7 +23,7 @@ import java.util.*
 fun SUCCESS_MotionToast(massage: String, context: Activity) {
     MotionToast.createColorToast(
         context,
-    "downloaded!  😍",
+        "downloaded!  😍",
         massage,
         MotionToast.TOAST_SUCCESS,
         MotionToast.GRAVITY_BOTTOM,
@@ -30,6 +31,7 @@ fun SUCCESS_MotionToast(massage: String, context: Activity) {
         ResourcesCompat.getFont(context, R.font.helvetica_regular)
     )
 }
+
 fun Warning_MotionToast(massage: String, context: Activity) {
     MotionToast.createColorToast(
         context,
@@ -67,16 +69,18 @@ fun setimageStock(imageView: AppCompatImageView, resource: String?) {
 
 @BindingAdapter("app:imageResource")
 fun setImageResource(imageView: AppCompatImageView, resource: String?) {
-    Glide.with(imageView.context).load(resource).into(imageView)
+    Glide.with(imageView.context).load(resource)
+        .transition(DrawableTransitionOptions.withCrossFade())
+        .into(imageView)
 }
+
 fun checkUserLogin(context: Context): Boolean {
-    if (!PreferenceHelper.getToken().isNullOrEmpty() )
+    if (!PreferenceHelper.getToken().isNullOrEmpty())
         return true
     else
 
-        Toast.makeText(context,"يجب تسجيل الدخول اولا", Toast.LENGTH_SHORT).show()
-        return  false
-
+        Toast.makeText(context, "يجب تسجيل الدخول اولا", Toast.LENGTH_SHORT).show()
+    return false
 
 
 }

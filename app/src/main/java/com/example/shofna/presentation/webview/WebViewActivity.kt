@@ -28,6 +28,7 @@ class WebViewActivity: AppCompatActivity() {
         val webview = findViewById<View>(R.id.webView) as WebView
 
         webview.settings.javaScriptEnabled = true
+        webview.settings.domStorageEnabled = true
 
 
 
